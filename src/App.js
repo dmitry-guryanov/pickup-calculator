@@ -254,7 +254,7 @@ class App extends Component {
 				</tbody></Table>
 				<div>
 				<Button onClick={this.handleUpdateButton}>Update</Button>&nbsp;
-				<Button onClick={this.handleDeleteButton}>Delete</Button>
+				<Button onClick={this.handleDeleteButton} disabled={Object.keys(this.state.setups).length <= 1}>Delete</Button>
 				</div>
 			</Form>
 			</div>
