@@ -8,14 +8,14 @@ class App extends Component {
 		super(props)
 		this.defaultSetup = {
 			Rp: "17400",
-			L: "6",
-			Cp: "100",
+			L: "8",
+			Cp: "80",
 			Ct: "22000",
 			Rt: "500000",
 			Rv: "500000",
 			Cc: "100",
 			Len: "3",
-			Rl1: "500000",
+			Rl1: "1000000",
 			Rl2: "",
 			Color: "#993955"
 		}
