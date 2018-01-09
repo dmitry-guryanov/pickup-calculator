@@ -27,7 +27,7 @@ class App extends Component {
 			"#8d91f4"
 		]
 
-		let current = "Hi-Output Humbucker with standard 3m cable"
+		let current = "Hi-Output Humbucker with 3m cable"
 		let setups = {
 			[current]: Object.assign({}, this.defaultSetup)
 		}
@@ -78,7 +78,6 @@ class App extends Component {
 		for (x = 0; x < 10000; x += 500) {
 			let y = this.calcU(Rp, L, (Cp + Cc * Len) * 1e-12, Ct * 1e-12, Rt, R, x )
 			arr.push({x: x, y: y})
-			console.log("x=%s, y=%s", x, y)
 		}
 
 		return arr
@@ -262,7 +261,7 @@ class App extends Component {
 			<Form inline>
 				<FormGroup controlId="params0">
 					<FormControl type="text" value={this.state.newSetup} bsSize="small" placeholder="enter text" onChange={this.handleChangeNew}></FormControl>&nbsp;
-					<Button bsSize="small" onClick={this.handleAddButton}>Add</Button>&nbsp;
+					<Button bsSize="small" onClick={this.handleAddButton}>Add Setup</Button>&nbsp;
 
 				</FormGroup>
 			</Form>
@@ -276,8 +275,9 @@ class App extends Component {
 				}
 			</Nav>
 			</div>
+			<br />
 			<Form inline>
-				Title
+				Title &nbsp;
 				<FormGroup controlId="params0">
 					<FormControl type="text" value={this.state.title} bsSize="small" placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
 
