@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { ButtonGroup, DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormControl, ControlLabel } from 'react-bootstrap';
 import { Line } from "react-chartjs-2";
 
 class App extends Component {
@@ -221,7 +221,7 @@ class App extends Component {
 					<FormControl type="text" value={this.state.newSetup} bsSize="small" placeholder="enter text" onChange={this.handleChangeNew}></FormControl>&nbsp;
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.addSetup}>Add</Button>
+					<Button disabled={this.state.newSetup === ""} onClick={this.addSetup}>Add</Button>
 				</Modal.Footer>
 			</Modal>
 			<Grid>
@@ -229,13 +229,6 @@ class App extends Component {
 					<Col sm={6} style={{padding: "10px"}}>
 
 			<div>
-			<div style={{"margin-bottom": "5px"}}>
-			<Form inline>
-				Title &nbsp;
-					<FormControl bsSize="small" type="text" value={this.state.title} placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
-
-			</Form>
-			</div>
 			<Form>
 				<div style={{"text-align": "right", "margin-bottom": "5px"}}>
 				<DropdownButton bsSize="small" title={this.state.current}>
@@ -294,6 +287,11 @@ class App extends Component {
 				</tbody></Table>
 			</Form>
 			</div>
+			<Form inline>
+				Title &nbsp;
+					<FormControl bsSize="small" type="text" value={this.state.title} placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
+
+			</Form>
 					</Col>
 					<Col sm={6}>
 		<Line data={data} options={options} width={500} height={500}/>
