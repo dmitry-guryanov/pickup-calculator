@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Table, Form, Grid, Row, Col, Nav, NavItem, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Modal, Table, Form, Grid, Row, Col, Nav, NavItem, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Line } from "react-chartjs-2";
 
 class App extends Component {
@@ -37,7 +37,8 @@ class App extends Component {
 			current: current,
 			data: {},
 			newSetup: "",
-			title: "Guitar pickup response"
+			title: "Guitar pickup response",
+			showAddDialog: false
 		}
 
 		let arr = this.calcData(setups[current])
@@ -50,6 +51,8 @@ class App extends Component {
 		this.handleChangeTitle = this.handleChangeTitle.bind(this)
 		this.handleSelect = this.handleSelect.bind(this)
 		this.handleAddButton = this.handleAddButton.bind(this)
+		this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this)
+		this.addSetup = this.addSetup.bind(this)
 		this.handleUpdateButton = this.handleUpdateButton.bind(this)
 		this.handleDeleteButton = this.handleDeleteButton.bind(this)
 	}
@@ -109,6 +112,14 @@ class App extends Component {
 	}
 
 	handleAddButton() {
+		this.setState({showAddDialog: true})
+	}
+
+	handleCloseAddDialog() {
+		this.setState({showAddDialog: false})
+	}
+
+	addSetup() {
 		let setups = this.state.setups
 
 		setups[this.state.newSetup] = Object.assign({}, setups[this.state.current])
@@ -116,7 +127,7 @@ class App extends Component {
 		let arr = this.calcData(setups[this.state.newSetup])
 		let data = this.state.data
 		data[this.state.newSetup] = arr
-		this.setState({setups: setups, current: this.state.newSetup, data: data, newSetup: ""})
+		this.setState({setups: setups, current: this.state.newSetup, data: data, newSetup: "", showAddDialog: false})
 	}
 
 	handleDeleteButton() {
@@ -201,6 +212,18 @@ class App extends Component {
 
  	return (
 		<div className="App">
+			<Modal show={this.state.showAddDialog} onHide={this.handleCloseAddDialog}>
+				<Modal.Header>
+					Add setup
+				</Modal.Header>
+				<Modal.Body>
+					<ControlLabel>Name</ControlLabel>
+					<FormControl type="text" value={this.state.newSetup} bsSize="small" placeholder="enter text" onChange={this.handleChangeNew}></FormControl>&nbsp;
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={this.addSetup}>Add</Button>
+				</Modal.Footer>
+			</Modal>
 			<Grid>
 				<Row>
 					<Col sm={6} style={{padding: "10px"}}>
@@ -260,7 +283,6 @@ class App extends Component {
 			<div style={{padding: "10px"}}>
 			<Form inline>
 				<FormGroup controlId="params0">
-					<FormControl type="text" value={this.state.newSetup} bsSize="small" placeholder="enter text" onChange={this.handleChangeNew}></FormControl>&nbsp;
 					<Button bsSize="small" onClick={this.handleAddButton}>Add Setup</Button>&nbsp;
 
 				</FormGroup>
