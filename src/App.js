@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Modal, Table, Form, Grid, Row, Col, Nav, NavItem, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { ButtonGroup, DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Line } from "react-chartjs-2";
 
 class App extends Component {
@@ -211,10 +211,10 @@ class App extends Component {
 		}
 
  	return (
-		<div className="App">
+		<div className="App" style={{"text-align": "left"}}>
 			<Modal show={this.state.showAddDialog} onHide={this.handleCloseAddDialog}>
 				<Modal.Header>
-					Add setup
+					<h4>Add setup</h4>
 				</Modal.Header>
 				<Modal.Body>
 					<ControlLabel>Name</ControlLabel>
@@ -228,9 +228,27 @@ class App extends Component {
 				<Row>
 					<Col sm={6} style={{padding: "10px"}}>
 
-			<h3>Current setup</h3>
 			<div>
+			<div style={{"margin-bottom": "5px"}}>
+			<Form inline>
+				Title &nbsp;
+					<FormControl bsSize="small" type="text" value={this.state.title} placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
+
+			</Form>
+			</div>
 			<Form>
+				<div style={{"text-align": "right", "margin-bottom": "5px"}}>
+				<DropdownButton bsSize="small" title={this.state.current}>
+					{
+						Object.keys(this.state.setups).map((k) =>
+							<MenuItem bsSize="small" eventKey={k} key={k} onSelect={this.handleSelect}>{k}</MenuItem>
+						)
+					}
+				</DropdownButton>&nbsp;
+				<Button bsSize="small" href="#" bsStyle="primary" onClick={this.handleUpdateButton}>Update</Button>&nbsp;
+				<Button bsSize="small" href="#" bsStyle="danger" onClick={this.handleDeleteButton} disabled={Object.keys(this.state.setups).length <= 1}>Delete</Button>&nbsp;
+				<Button bsSize="small" href="#" bsStyle="success" onClick={this.handleAddButton}>New</Button>
+				</div>
 				<Table responsive bordered={false} condensed={true}><tbody>
 					<tr>
 						<td>Pickup Resistance (DCR), Ohms</td>
@@ -274,37 +292,8 @@ class App extends Component {
 					</tr>
 
 				</tbody></Table>
-				<div>
-				<Button onClick={this.handleUpdateButton}>Update</Button>&nbsp;
-				<Button onClick={this.handleDeleteButton} disabled={Object.keys(this.state.setups).length <= 1}>Delete</Button>
-				</div>
 			</Form>
 			</div>
-			<div style={{padding: "10px"}}>
-			<Form inline>
-				<FormGroup controlId="params0">
-					<Button bsSize="small" onClick={this.handleAddButton}>Add Setup</Button>&nbsp;
-
-				</FormGroup>
-			</Form>
-			</div>
-			<div>
-			<Nav bsStyle="pills" stacked activeKey={this.state.current} onSelect={this.handleSelect}>
-				{
-					Object.keys(this.state.setups).map((k) =>
-						<NavItem eventKey={k} key={k} >{k}</NavItem>
-					)
-				}
-			</Nav>
-			</div>
-			<br />
-			<Form inline>
-				Title &nbsp;
-				<FormGroup controlId="params0">
-					<FormControl type="text" value={this.state.title} bsSize="small" placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
-
-				</FormGroup>
-			</Form>
 					</Col>
 					<Col sm={6}>
 		<Line data={data} options={options} width={500} height={500}/>
