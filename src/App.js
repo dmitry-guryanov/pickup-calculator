@@ -211,7 +211,7 @@ class App extends Component {
 		}
 
  	return (
-		<div className="App" style={{"text-align": "left"}}>
+		<div className="App" style={{textAlign: "left"}}>
 			<Modal show={this.state.showAddDialog} onHide={this.handleCloseAddDialog}>
 				<Modal.Header>
 					<h4>Add setup</h4>
@@ -230,8 +230,8 @@ class App extends Component {
 
 			<div>
 			<Form>
-				<div style={{"text-align": "right", "margin-bottom": "5px"}}>
-				<DropdownButton bsSize="small" title={this.state.current}>
+				<div style={{textAlign: "right", marginBottom: "5px"}}>
+				<DropdownButton id="dropdown" bsSize="small" title={this.state.current}>
 					{
 						Object.keys(this.state.setups).map((k) =>
 							<MenuItem bsSize="small" eventKey={k} key={k} onSelect={this.handleSelect}>{k}</MenuItem>
