@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormControl, ControlLabel } from 'react-bootstrap';
+import { PageHeader, DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormControl, ControlLabel } from 'react-bootstrap';
 import { Line } from "react-chartjs-2";
+import doc from "./Doc.js"
 
 class App extends Component {
 	constructor(props) {
@@ -212,6 +213,7 @@ class App extends Component {
 
  	return (
 		<div className="App" style={{textAlign: "left"}}>
+			<PageHeader><span style={{color: "#555"}}>Guitar pickup response calculator</span></PageHeader>
 			<Modal show={this.state.showAddDialog} onHide={this.handleCloseAddDialog}>
 				<Modal.Header>
 					<h4>Add setup</h4>
@@ -226,7 +228,7 @@ class App extends Component {
 			</Modal>
 			<Grid>
 				<Row>
-					<Col sm={6} style={{padding: "10px"}}>
+					<Col sm={6}>
 
 			<div>
 			<Form>
@@ -242,7 +244,7 @@ class App extends Component {
 				<Button bsSize="small" href="#" bsStyle="danger" onClick={this.handleDeleteButton} disabled={Object.keys(this.state.setups).length <= 1}>Delete</Button>&nbsp;
 				<Button bsSize="small" href="#" bsStyle="success" onClick={this.handleAddButton}>New</Button>
 				</div>
-				<Table responsive bordered={false} condensed={true}><tbody>
+				<table width="100%" className="form-table">
 					<tr>
 						<td>Pickup Resistance (DCR), Ohms</td>
 						<td><FormControl id="Rp" bsSize="small" type="text" value={this.state.setups[this.state.current].Rp} placeholder="enter text" onChange={this.handleChange}></FormControl></td>
@@ -283,21 +285,23 @@ class App extends Component {
 						<td>Load 2 resistance, Ohms</td>
 						<td><FormControl id="Rl2" bsSize="small" type="text" value={this.state.setups[this.state.current].Rl2} placeholder="enter text" onChange={this.handleChange}></FormControl></td>
 					</tr>
-
-				</tbody></Table>
+					<tr>
+						<td>Chart title</td>
+						<td><FormControl bsSize="small" type="text" value={this.state.title} placeholder="enter text" onChange={this.handleChangeTitle}></FormControl></td>
+					</tr>
+				</table>
 			</Form>
 			</div>
-			<Form inline>
-				Title &nbsp;
-					<FormControl bsSize="small" type="text" value={this.state.title} placeholder="enter text" onChange={this.handleChangeTitle}></FormControl>&nbsp;
-
-			</Form>
 					</Col>
 					<Col sm={6}>
 		<Line data={data} options={options} width={500} height={500}/>
 					</Col>
 				</Row>
 			</Grid>
+			<div style={{padding: "20px"}}>{doc}</div>
+			<hr />
+			Project page on github: <a href="https://github.com/dmitry-guryanov/pickup-calculator">https://github.com/dmitry-guryanov/pickup-calculator</a><br />
+			© 2018 Dmitry Guryanov All Rights Reserved
 		</div>
  		);
 	}
