@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { PageHeader, DropdownButton, MenuItem, Modal, Table, Form, Grid, Row, Col, Button, FormControl, ControlLabel } from 'react-bootstrap';
+import { PageHeader, DropdownButton, MenuItem, Modal, Form, Grid, Row, Col, Button, FormControl, ControlLabel } from 'react-bootstrap';
 import { Line } from "react-chartjs-2";
 import doc from "./Doc.js"
 

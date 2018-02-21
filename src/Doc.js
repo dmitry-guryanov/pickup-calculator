@@ -22,12 +22,12 @@ together. Also you can plot several lines on a single chart to compare.</p>
 
 <p>
 Electric guitar with magnetic pickup can be represented with the following electrical scheme, if we set volume and tone to their maximum positions:
-<img alt="first electrical screme" className="centered" src='/scheme5x.png' />
+<img alt="first electrical screme" className="centered" src='scheme5x.png' />
 </p>
 
 <p>
 <Node inline>C_p</Node> and <Node inline>C_c</Node> are parallels, so we can replace them with <Node inline>C_x = C_p + C_c</Node>. Also <Node inline>R_v</Node> and <Node inline>R_l</Node> are also parallel, we can replace them with <Node inline>R_x = (R_v R_l) / (R_v + R_l)</Node>. This results in scheme:
-<img alt="second electrical scheme" className="centered" src='/scheme6x.png' /></p>
+<img alt="second electrical scheme" className="centered" src='scheme6x.png' /></p>
 
 <p>We need to determine the dependency of voltage amplitude between x1 and x2 from frequency. We can do it using complex
 amplitude method and Kirchhoff's laws:</p>
