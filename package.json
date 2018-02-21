@@ -2,6 +2,7 @@
   "name": "pickup-calculator",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://guryanov.org/pickup-calculator",
   "dependencies": {
     "create-react-class": "^15.6.3",
     "react": "^16.2.0",
